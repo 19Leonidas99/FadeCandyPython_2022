@@ -1,14 +1,14 @@
-
+import random
 import opc
 from time import sleep
 
 client = opc.Client('localhost:7890')
 LED = [(0, 0, 0)] * 360
 
-# Leds=======================================================================================================
+
+# Leds Start =================================================================
 
 
-# Rock Paper Scissors
 def V():
     for column in range(19, 20):
         for rows in range(0, 1):
@@ -156,13 +156,181 @@ def S():
         sleep(0.1)
 
 
-def Rock():
-    for column in range(0, 4):
-        for rows in range(0, 6):
-            LED[column + rows * 60] = (255, 155, 0)
+def Rock(x, y):
+    for column in range(1 + x, 5 + y):
+        for rows in range(2, 5):
+            LED[column + rows * 60] = (255, 178, 102)
+        client.put_pixels(LED)
+
+    for column in range(5 + x, 18 + y):
+        for rows in range(1, 6):
+            LED[column + rows * 60] = (255, 178, 102)
+        client.put_pixels(LED)
+
+    for column in range(13 + x, 18 + y):
+        for rows in range(2, 3):
+            LED[column + rows * 60] = (102, 51, 0)
+        client.put_pixels(LED)
+
+    for column in range(13 + x, 18 + y):
+        for rows in range(4, 5):
+            LED[column + rows * 60] = (102, 51, 0)
+        client.put_pixels(LED)
+
+
+def Scissors(x, y):
+    for column in range(4 + x, 15 + y):
+        for rows in range(4, 6):
+            LED[column + rows * 60] = (255, 178, 102)
+        client.put_pixels(LED)
+
+    for column in range(3 + x, 6 + y):
+        for rows in range(3, 4):
+            LED[column + rows * 60] = (255, 178, 102)
+        client.put_pixels(LED)
+
+    for column in range(8 + x, 12 + y):
+        for rows in range(3, 4):
+            LED[column + rows * 60] = (255, 178, 102)
         client.put_pixels(LED)
         sleep(0.1)
 
+    for column in range(2 + x, 5 + y):
+        for rows in range(2, 3):
+            LED[column + rows * 60] = (255, 178, 102)
+        client.put_pixels(LED)
 
-V()
-S()
+    for column in range(9 + x, 12 + y):
+        for rows in range(2, 3):
+            LED[column + rows * 60] = (255, 178, 102)
+        client.put_pixels(LED)
+        sleep(0.1)
+
+    for column in range(1 + x, 4 + y):
+        for rows in range(1, 2):
+            LED[column + rows * 60] = (255, 178, 102)
+        client.put_pixels(LED)
+
+    for column in range(10 + x, 13 + y):
+        for rows in range(1, 2):
+            LED[column + rows * 60] = (255, 178, 102)
+        client.put_pixels(LED)
+        sleep(0.1)
+
+    for column in range(0 + x, 3 + y):
+        for rows in range(0, 1):
+            LED[column + rows * 60] = (255, 178, 102)
+        client.put_pixels(LED)
+
+    for column in range(11 + x, 14 + y):
+        for rows in range(0, 1):
+            LED[column + rows * 60] = (255, 178, 102)
+        client.put_pixels(LED)
+
+
+def Paper(x, y):
+    for column in range(2 + x, 8 + y):
+        for rows in range(0, 6):
+            LED[column + rows * 60] = (255, 178, 102)
+        client.put_pixels(LED)
+
+    for column in range(0 + x, 18 + y):
+        for rows in range(1, 6):
+            LED[column + rows * 60] = (255, 178, 102)
+        client.put_pixels(LED)
+
+    for column in range(11 + x, 18 + y):
+        for rows in range(2, 3):
+            LED[column + rows * 60] = (92, 51, 0)
+        client.put_pixels(LED)
+
+
+def Restart_RPS():
+    for column in range(0, 19):
+        for rows in range(0, 6):
+            LED[column + rows * 60] = (0, 0, 0)
+        client.put_pixels(LED)
+
+    for column in range(37, 60):
+        for rows in range(0, 6):
+            LED[column + rows * 60] = (0, 0, 0)
+        client.put_pixels(LED)
+
+
+# Leds End =================================================================
+
+# Rock Paper Scissors Start ================================================
+
+
+def RPS():  # Rock Paper Scissors Game
+    pc_choices = ['1', '2', '3']
+    Player_Score = 0
+    Computer_Score = 0
+    print('Best of 5 Rock Paper Scissors')
+    sleep(5)
+    for z in range(5):
+        Restart_RPS()
+        pc = random.choice(pc_choices)
+        User = input('1-Rock 2-Paper 3-Scissors\n')
+        V(), S()
+        print(z)
+        print(pc)
+
+        if User == pc:
+            print(f'Draw! Score Player {Player_Score} Computer {Computer_Score}')
+            if User == 1:
+                Rock(0, 0)
+                Rock(39, 39)
+                sleep(5)
+            elif User == 2:
+                Paper(0, 0)
+                Paper(39, 39)
+                sleep(5)
+            else:
+                Scissors(0, 0)
+                Scissors(39, 39)
+                sleep(5)
+
+        elif User == '1':
+            Rock(0, 0)
+            if pc == '3':
+                Scissors(39, 39)
+                Player_Score += 1
+                print(f'Player wins! Score Player {Player_Score} Computer {Computer_Score} ')
+                sleep(5)
+
+            else:
+                Paper(39, 39)
+                Computer_Score += 1
+                print(f'Computer win! Player loses, Score Player {Player_Score} Computer {Computer_Score}')
+                sleep(5)
+
+        elif User == '2':
+            Paper(0, 0)
+            if pc == '1':
+                Rock(39, 39)
+                Player_Score += 1
+                print(f'Player wins! Score Player {Player_Score} Computer {Computer_Score}')
+                sleep(5)
+            else:
+                Scissors(39, 39)
+                Computer_Score += 1
+                print(f'Computer win! Player loses, Score Player {Player_Score} Computer {Computer_Score}')
+                sleep(5)
+
+        elif User == '3':
+            Scissors(0, 0)
+            if pc == '2':
+                Paper(39, 39)
+                Player_Score += 1
+                print(f'Player wins! Score Player {Player_Score} Computer {Computer_Score}')
+                sleep(5)
+            else:
+                Rock(39, 39)
+                Computer_Score += 1
+                print(f'Computer win! Player loses, Score Player {Player_Score} Computer {Computer_Score}')
+                sleep(5)
+
+
+# Rock Paper Scissors End ================================================
+RPS()
