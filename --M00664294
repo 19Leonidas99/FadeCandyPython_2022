@@ -282,9 +282,9 @@ def RPS():  # Rock Paper Scissors Game
         print(z)
         print(pc)
 
-        if User == pc:
+        if User == pc:  # Check for Tie
             print(f'Draw! Score Player {Player_Score} Computer {Computer_Score}')
-            if User == 1:
+            if User == 1:  # show same animation on both sides
                 Rock(0, 0)
                 Rock(39, 39)
                 sleep(5)
@@ -299,13 +299,13 @@ def RPS():  # Rock Paper Scissors Game
 
         elif User == '1':
             Rock(0, 0)
-            if pc == '3':
+            if pc == '3':  # checks for Rock win
                 Scissors(39, 39)
                 Player_Score += 1
                 print(f'Player wins! Score Player {Player_Score} Computer {Computer_Score} ')
                 sleep(5)
 
-            else:
+            else:  # check fo Rock loss
                 Paper(39, 39)
                 Computer_Score += 1
                 print(f'Computer win! Player loses, Score Player {Player_Score} Computer {Computer_Score}')
@@ -313,12 +313,12 @@ def RPS():  # Rock Paper Scissors Game
 
         elif User == '2':
             Paper(0, 0)
-            if pc == '1':
+            if pc == '1':  # checks for Paper win
                 Rock(39, 39)
                 Player_Score += 1
                 print(f'Player wins! Score Player {Player_Score} Computer {Computer_Score}')
                 sleep(5)
-            else:
+            else:  # check for Paper loss
                 Scissors(39, 39)
                 Computer_Score += 1
                 print(f'Computer win! Player loses, Score Player {Player_Score} Computer {Computer_Score}')
@@ -326,12 +326,12 @@ def RPS():  # Rock Paper Scissors Game
 
         elif User == '3':
             Scissors(0, 0)
-            if pc == '2':
+            if pc == '2':  # checks for Scissors win
                 Paper(39, 39)
                 Player_Score += 1
                 print(f'Player wins! Score Player {Player_Score} Computer {Computer_Score}')
                 sleep(5)
-            else:
+            else:  # check for Scissors loss
                 Rock(39, 39)
                 Computer_Score += 1
                 print(f'Computer win! Player loses, Score Player {Player_Score} Computer {Computer_Score}')
