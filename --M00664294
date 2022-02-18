@@ -159,94 +159,171 @@ def S():
 
 
 # ============================================== Rock Animation ========================================================
-def Rock(x, y):
-    for column in range(1 + x, 5 + y):
+def Rock(x):
+    for column in range(1 + x, 5 + x):
         for rows in range(2, 5):
             LED[column + rows * 60] = (255, 178, 102)
         client.put_pixels(LED)
 
-    for column in range(5 + x, 18 + y):
+    for column in range(5 + x, 18 + x):
         for rows in range(1, 6):
             LED[column + rows * 60] = (255, 178, 102)
-        client.put_pixels(LED)
-
-    for column in range(13 + x, 18 + y):
-        for rows in range(2, 3):
-            LED[column + rows * 60] = (102, 51, 0)
-        client.put_pixels(LED)
-
-    for column in range(13 + x, 18 + y):
-        for rows in range(4, 5):
-            LED[column + rows * 60] = (102, 51, 0)
         client.put_pixels(LED)
 
 
 # ================================================= Scissors Animation =================================================
-def Scissors(x, y):
-    for column in range(4 + x, 15 + y):
+def Scissors(x):
+    for column in range(4 + x, 15 + x):
         for rows in range(4, 6):
             LED[column + rows * 60] = (255, 178, 102)
         client.put_pixels(LED)
 
-    for column in range(3 + x, 6 + y):
+    for column in range(4 + x, 7 + x):
         for rows in range(3, 4):
             LED[column + rows * 60] = (255, 178, 102)
         client.put_pixels(LED)
 
-    for column in range(8 + x, 12 + y):
+    for column in range(8 + x, 11 + x):
         for rows in range(3, 4):
             LED[column + rows * 60] = (255, 178, 102)
         client.put_pixels(LED)
         sleep(0.1)
 
-    for column in range(2 + x, 5 + y):
+    openScissors(x)
+    closeScissors(x)
+    openScissors(x)
+    closeScissors(x)
+    openScissors(x)
+
+
+# Fingers
+# Scissors opened ======================================================================================================
+
+def openScissors(x):
+    for column in range(3 + x, 6 + x):
         for rows in range(2, 3):
             LED[column + rows * 60] = (255, 178, 102)
         client.put_pixels(LED)
 
-    for column in range(9 + x, 12 + y):
+    for column in range(9 + x, 12 + x):
         for rows in range(2, 3):
             LED[column + rows * 60] = (255, 178, 102)
         client.put_pixels(LED)
         sleep(0.1)
 
-    for column in range(1 + x, 4 + y):
+    for column in range(2 + x, 5 + x):
         for rows in range(1, 2):
             LED[column + rows * 60] = (255, 178, 102)
         client.put_pixels(LED)
 
-    for column in range(10 + x, 13 + y):
+    for column in range(10 + x, 13 + x):
         for rows in range(1, 2):
             LED[column + rows * 60] = (255, 178, 102)
         client.put_pixels(LED)
         sleep(0.1)
 
-    for column in range(0 + x, 3 + y):
+    for column in range(1 + x, 4 + x):
+        for rows in range(0, 1):
+            LED[column + rows * 60] = (255, 178, 102)
+        client.put_pixels(LED)
+        sleep(0.1)
+
+        # blackout closeScissors
+    for column in range(11 + x, 14 + x):
         for rows in range(0, 1):
             LED[column + rows * 60] = (255, 178, 102)
         client.put_pixels(LED)
 
-    for column in range(11 + x, 14 + y):
+    for column in range(4 + x, 11 + x):
+        for rows in range(0, 1):
+            LED[column + rows * 60] = (0, 0, 0)
+        client.put_pixels(LED)
+
+    for column in range(5 + x, 10 + x):
+        for rows in range(1, 2):
+            LED[column + rows * 60] = (0, 0, 0)
+        client.put_pixels(LED)
+
+    for column in range(6 + x, 9 + x):
+        for rows in range(2, 3):
+            LED[column + rows * 60] = (0, 0, 0)
+        client.put_pixels(LED)
+        sleep(0.1)
+
+
+# Scissors closed ======================================================================================================
+def closeScissors(x):
+    for column in range(4 + x, 7 + x):
+        for rows in range(2, 3):
+            LED[column + rows * 60] = (255, 178, 102)
+        client.put_pixels(LED)
+
+    for column in range(8 + x, 11 + x):
+        for rows in range(2, 3):
+            LED[column + rows * 60] = (255, 178, 102)
+        client.put_pixels(LED)
+        sleep(0.1)
+
+    for column in range(4 + x, 7 + x):
+        for rows in range(1, 2):
+            LED[column + rows * 60] = (255, 178, 102)
+        client.put_pixels(LED)
+
+    for column in range(8 + x, 11 + x):
+        for rows in range(1, 2):
+            LED[column + rows * 60] = (255, 178, 102)
+        client.put_pixels(LED)
+        sleep(0.1)
+
+    for column in range(4 + x, 7 + x):
         for rows in range(0, 1):
             LED[column + rows * 60] = (255, 178, 102)
         client.put_pixels(LED)
+
+    for column in range(8 + x, 11 + x):
+        for rows in range(0, 1):
+            LED[column + rows * 60] = (255, 178, 102)
+        client.put_pixels(LED)
+        sleep(0.1)
+
+        # blackout openScissors
+    for column in range(0 + x, 4 + x):
+        for rows in range(0, 4):
+            LED[column + rows * 60] = (0, 0, 0)
+        client.put_pixels(LED)
+
+    for column in range(11 + x, 14 + x):
+        for rows in range(0, 4):
+            LED[column + rows * 60] = (0, 0, 0)
+        client.put_pixels(LED)
+        sleep(0.1)
 
 
 # ========================================== Paper Animation ===========================================================
-def Paper(x, y):
-    for column in range(2 + x, 8 + y):
-        for rows in range(0, 6):
+def Paper(x):
+    for column in range(2 + x, 8 + x):
+        for rows in range(0, 1):
             LED[column + rows * 60] = (255, 178, 102)
         client.put_pixels(LED)
 
-    for column in range(0 + x, 18 + y):
-        for rows in range(1, 6):
+    for column in range(0 + x, 15 + x):
+        for rows in range(1, 2):
             LED[column + rows * 60] = (255, 178, 102)
         client.put_pixels(LED)
 
-    for column in range(11 + x, 18 + y):
+    for column in range(0 + x, 17 + x):
         for rows in range(2, 3):
-            LED[column + rows * 60] = (92, 51, 0)
+            LED[column + rows * 60] = (255, 178, 102)
+        client.put_pixels(LED)
+
+    for column in range(0 + x, 16 + x):
+        for rows in range(3, 4):
+            LED[column + rows * 60] = (255, 178, 102)
+        client.put_pixels(LED)
+
+    for column in range(0 + x, 14 + x):
+        for rows in range(4, 5):
+            LED[column + rows * 60] = (255, 178, 102)
         client.put_pixels(LED)
 
 
@@ -270,72 +347,84 @@ def Restart_RPS():
 
 def RPS():  # Rock Paper Scissors Game
     pc_choices = ['1', '2', '3']
+    player_choices = ['1', '2', '3', 'Q']
     Player_Score = 0
     Computer_Score = 0
-    print('Best of 5 Rock Paper Scissors')
     V(), S()
-    sleep(5)
-    for z in range(5):
+    print('Best of 5 Rock Paper Scissors')
+    while Player_Score < 3 and Computer_Score < 3:
         Restart_RPS()
         pc = random.choice(pc_choices)
-        User = input('1-Rock 2-Paper 3-Scissors\n')
-        print(z)
-        print(pc)
+        User = input('1-Rock 2-Paper 3-Scissors\n Q-Quit\n')
 
-        if User == pc:  # Check for Tie
-            print(f'Draw! Score Player {Player_Score} Computer {Computer_Score}')
-            if User == 1:  # show same animation on both sides
-                Rock(0, 0)
-                Rock(39, 39)
-                sleep(5)
-            elif User == 2:
-                Paper(0, 0)
-                Paper(39, 39)
-                sleep(5)
-            else:
-                Scissors(0, 0)
-                Scissors(39, 39)
-                sleep(5)
+        if User in player_choices:
+            print(pc)
+            if User == pc:  # Check for Tie
+                print(f'Draw! Score Player{Player_Score} Computer {Computer_Score}')
+                if User == '1':  # show same animation on both sides
+                    Rock(0)
+                    Rock(39)
+                    sleep(2)
+                elif User == '2':
+                    Paper(0)
+                    Paper(41)
+                    sleep(2)
+                else:
+                    Scissors(0)
+                    Scissors(39)
+                    sleep(2)
 
-        elif User == '1':
-            Rock(0, 0)
-            if pc == '3':  # checks for Rock win
-                Scissors(39, 39)
-                Player_Score += 1
-                print(f'Player wins! Score Player {Player_Score} Computer {Computer_Score} ')
-                sleep(5)
+            elif User == '1':
+                Rock(0)
+                if pc == '3':  # checks for Rock win
+                    Scissors(39)
+                    Player_Score += 1
+                    print(f'Player wins! Score Player {Player_Score} Computer {Computer_Score} ')
+                    sleep(2)
 
-            else:  # check fo Rock loss
-                Paper(39, 39)
-                Computer_Score += 1
-                print(f'Computer win! Player loses, Score Player {Player_Score} Computer {Computer_Score}')
-                sleep(5)
+                else:  # check fo Rock loss
+                    Paper(41)
+                    Computer_Score += 1
+                    print(f'Computer win! Player loses, Score Player {Player_Score} Computer {Computer_Score}')
+                    sleep(2)
 
-        elif User == '2':
-            Paper(0, 0)
-            if pc == '1':  # checks for Paper win
-                Rock(39, 39)
-                Player_Score += 1
-                print(f'Player wins! Score Player {Player_Score} Computer {Computer_Score}')
-                sleep(5)
-            else:  # check for Paper loss
-                Scissors(39, 39)
-                Computer_Score += 1
-                print(f'Computer win! Player loses, Score Player {Player_Score} Computer {Computer_Score}')
-                sleep(5)
+            elif User == '2':
+                Paper(0)
+                if pc == '1':  # checks for Paper win
+                    Rock(39)
+                    Player_Score += 1
+                    print(f'Player wins! Score Player {Player_Score} Computer {Computer_Score}')
+                    sleep(5)
+                else:  # check for Paper loss
+                    Scissors(39)
+                    Computer_Score += 1
+                    print(f'Computer win! Player loses, Score Player {Player_Score} Computer {Computer_Score}')
+                    sleep(2)
 
-        elif User == '3':
-            Scissors(0, 0)
-            if pc == '2':  # checks for Scissors win
-                Paper(39, 39)
-                Player_Score += 1
-                print(f'Player wins! Score Player {Player_Score} Computer {Computer_Score}')
-                sleep(5)
-            else:  # check for Scissors loss
-                Rock(39, 39)
-                Computer_Score += 1
-                print(f'Computer win! Player loses, Score Player {Player_Score} Computer {Computer_Score}')
-                sleep(5)
+            elif User == '3':
+                Scissors(0)
+                if pc == '2':  # checks for Scissors win
+                    Paper(41)
+                    Player_Score += 1
+                    print(f'Player wins! Score Player {Player_Score} Computer {Computer_Score}')
+                    sleep(2)
+                else:  # check for Scissors loss
+                    Rock(39)
+                    Computer_Score += 1
+                    print(f'Computer win! Player loses, Score Player {Player_Score} Computer {Computer_Score}')
+                    sleep(2)
+
+            elif User == 'Q':
+                print(f'End Game\nScore Player {Player_Score} Computer {Computer_Score}')
+                if Player_Score > Computer_Score:
+                    print('Player won')
+                elif Player_Score == Computer_Score:
+                    print('Draw')
+                else:
+                    print('Computer Wins')
+                break
+        else:
+            print('That is not an accepted input')
 
 
 # Rock Paper Scissors End ==============================================================================================
